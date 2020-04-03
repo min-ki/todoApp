@@ -6,3 +6,12 @@ yarn.lock
 
 
 */dist
+
+tmp/
+temp/
+.vscode/
+build/
+
+migration/
+
+.env

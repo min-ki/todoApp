@@ -1,20 +1,28 @@
+import "reflect-metadata";
+import { createConnection } from "typeorm";
 import bodyParser from "body-parser";
 import compression from "compression";
 import cors from "cors";
 import express from "express";
-import { requestLoggerMiddleware } from "./middleware";
+import morgan from "morgan";
 
-const app = express();
+import todoRouter from "./routes/todoRoutes";
 
-app.use(compression());
-app.use(cors());
-app.use(bodyParser.json());
-app.use(requestLoggerMiddleware);
+const startServer = async () => {
+  const app = express();
 
-app.get("/", (req: express.Request, res: express.Response) => {
-  res.send("Hello Word!");
-});
+  app.use(compression());
+  app.use(cors());
+  app.use(morgan("dev"));
+  app.use(bodyParser.json());
 
-app.listen(4000, () => {
-  console.log("🚀 Node TODO Server Start");
-});
+  app.use("/todo", todoRouter);
+
+  app.listen(4000, () => {
+    console.log("🚀 Node TODO Server Start");
+  });
+
+  await createConnection();
+};
+
+startServer();
