@@ -19,7 +19,7 @@
     "morgan": "^1.10.0",
     "pg": "^8.0.0",
     "reflect-metadata": "^0.1.10",
-    "typeorm": "0.2.24"
+    "typeorm": "0.3.0"
   },
   "scripts": {
     "start": "tsc && node dist/index.js",
